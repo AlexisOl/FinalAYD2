@@ -22,6 +22,11 @@ public class FinalExampleTest extends TestCase {
     private static final String MENSAJE_FALLIDO_NOMBRE = "Name cannot be empty";
     private static final String MENSAJE_FALLIDO_CORREO = "Invalid email";
 
+
+
+    // creacion de objeto
+    private static user USUARIO = new user(NOMBRE_USUARIO, EMAIL, TELEFONO, DIRECCION, CIUDAD, ZIP);
+
     // ORDENES
 
 
@@ -48,7 +53,7 @@ public class FinalExampleTest extends TestCase {
     public void testUsuarioCorrecto(){
         FinalExample instanciaFinal = new FinalExample();
         String valor = instanciaFinal.createUser(
-                NOMBRE_USUARIO, EMAIL, TELEFONO, DIRECCION, CIUDAD, ZIP
+                USUARIO
         );
         assertEquals(valor, MENSAJE_EXITO+NOMBRE_USUARIO);
     }
@@ -56,7 +61,7 @@ public class FinalExampleTest extends TestCase {
     public void testNombreFaltante(){
         FinalExample instanciaFinal = new FinalExample();
         String valor = instanciaFinal.createUser(
-                null, EMAIL, TELEFONO, DIRECCION, CIUDAD, ZIP
+                new user(null, EMAIL, TELEFONO, DIRECCION, CIUDAD, ZIP)
         );
         assertEquals(MENSAJE_FALLIDO_NOMBRE, valor);
     }
@@ -64,7 +69,7 @@ public class FinalExampleTest extends TestCase {
     public void testEmailFaltante(){
         FinalExample instanciaFinal = new FinalExample();
         String valor = instanciaFinal.createUser(
-                NOMBRE_USUARIO, null, TELEFONO, DIRECCION, CIUDAD, ZIP
+                new user(NOMBRE_USUARIO, null, TELEFONO, DIRECCION, CIUDAD, ZIP)
         );
         assertEquals(MENSAJE_FALLIDO_CORREO, valor);
     }

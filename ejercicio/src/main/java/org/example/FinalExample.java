@@ -31,20 +31,22 @@ public class FinalExample {
         }
     }
 
-    public String createUser(String name, String email, String phone,
-                             String address, String city, String zip) {
+
+    // restructurarcion con un objeto usuario
+    public String createUser(user usuario) {
         // Validation logic mixed with creation
-        if (name == null || name.isEmpty()) {
+        if (usuario.getName() == null || usuario.getName().isEmpty()) {
             return "Name cannot be empty";
         }
-        if (email == null || !email.contains("@")) {
+        if (usuario.getEmail() == null || !usuario.getEmail().contains("@")) {
             return "Invalid email";
         }
         // ... more validations
 
-        return "User created: " + name;
+        return "User created: " + usuario.getName();
     }
 
+    // este debera de ser builer
     public class Order {
         private String customerName;
         private List<String> items;
@@ -52,14 +54,19 @@ public class FinalExample {
 
         public void printOrderSummary() {
             ReportGenerator generator = new ReportGenerator();
-            generator.printHeader(customerName);
+            printHeader imprimir = new printHeader();
+            imprimir.print(customerName);
+
+            printLine print_line = new printLine();
             for (String item : items) {
-                generator.printLineItem(item);
+                print_line.printLineItem(item);
             }
-            generator.printTotal(total);
+            printTotal totalImprimr = new printTotal();
+            totalImprimr.printTotal(total);
         }
     }
 
+    // se estructuro con command
     public class ReportGenerator {
         public void printHeader(String customer) {
             System.out.println("Order for: " + customer);
@@ -74,6 +81,11 @@ public class FinalExample {
         }
     }
 
+
+
+
+
+    // este debera de ser estrategy
     public double calculateArea(String shape, double... dimensions) {
         switch (shape) {
             case "circle":
